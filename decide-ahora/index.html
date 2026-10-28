@@ -35,31 +35,25 @@
 <header class="top"><a class="brand" href="/" aria-label="Decide Ahora, inicio" style="text-decoration:none"><span class="brandmark" aria-hidden="true">✓</span><span>Decide Ahora</span></a><span class="free">Gratis · Sin registro</span></header>
 <section class="hero">
 <div class="eyebrow">Menos vueltas. Más claridad.</div>
-<h1>Decide Ahora: compara opciones y elige mejor.</h1>
-<p>Ordena tus opciones, valora lo que importa y descubre cuál encaja mejor contigo. En unos minutos y sin registrarte.</p>
+<h1>Decide Ahora</h1>
+<p>Cuéntanos qué tienes que decidir. Compara tus opciones y consigue una recomendación clara en menos de un minuto.</p>
 </section>
 <section class="card" aria-labelledby="step1">
-<div class="section-head"><span class="num">1</span><div><h2 id="step1">¿Qué necesitas decidir?</h2><p>Describe el dilema en una frase.</p></div></div>
-<label class="field-label" for="decision">Tu decisión</label>
-<input type="text" id="decision" maxlength="180" placeholder="Ej.: ¿Cambio de trabajo o me quedo donde estoy?">
-<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><label class="field-label" for="options" style="margin-bottom:8px">Opciones que estás valorando</label><button class="secondary" type="button" id="suggestOptions">✨ Sugerir opciones</button></div>
-<textarea id="options" maxlength="700" placeholder="Seguir en mi trabajo actual&#10;Buscar otro empleo&#10;Empezar a trabajar por mi cuenta"></textarea>
-<div class="hint">¿No tienes claras las alternativas? Pulsa “Sugerir opciones”: te propondrá ideas relacionadas con tu dilema que podrás editar antes de comparar.</div>
-<div class="divider"></div>
-<div class="section-head"><span class="num">2</span><div><h2>¿Qué es lo más importante?</h2><p>Esto cambia el peso de cada criterio.</p></div></div>
-<div class="grid2">
-<div><span class="field-label">Tu prioridad principal</span><div class="pills" id="priority" role="group" aria-label="Prioridad principal"><button class="pill" data-value="dinero" aria-pressed="false">💶 Dinero</button><button class="pill" data-value="tiempo" aria-pressed="false">⏳ Tiempo</button><button class="pill" data-value="tranquilidad" aria-pressed="true">🌿 Tranquilidad</button><button class="pill" data-value="crecer" aria-pressed="false">📈 Crecer</button></div></div>
-<div><span class="field-label">¿Qué difícil sería dar marcha atrás?</span><div class="pills" id="risk" role="group" aria-label="Reversibilidad"><button class="pill" data-value="facil" aria-pressed="false">Fácil</button><button class="pill" data-value="medio" aria-pressed="true">Más o menos</button><button class="pill" data-value="dificil" aria-pressed="false">Difícil</button></div></div>
-</div>
-<button class="primary" id="compare">Comparar mis opciones <span aria-hidden="true">→</span></button>
+<div class="section-head"><span class="num">1</span><div><h2 id="step1">¿Qué tienes que decidir?</h2><p>Una frase es suficiente.</p></div></div>
+<label class="field-label" for="decision">Tu dilema</label>
+<input type="text" id="decision" maxlength="180" placeholder="Ej.: ¿Cambio de trabajo o me quedo?">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><label class="field-label" for="options" style="margin-bottom:8px">Tus opciones <span style="font-weight:400;color:var(--muted)">(opcional)</span></label><button class="secondary" type="button" id="suggestOptions">✨ Proponer opciones</button></div>
+<textarea id="options" maxlength="700" placeholder="Escribe una opción por línea, si ya las tienes claras."></textarea>
+<div class="hint">Si no sabes qué opciones tienes, las proponemos por ti.</div>
+<button class="primary" id="compare">Ayúdame a decidir <span aria-hidden="true">→</span></button>
 <div id="optionRatings" class="option-list" hidden></div>
-<div id="ratingActions" hidden><button class="primary" id="calculate">Ver mi recomendación →</button><div class="hint">Puntúa cada opción del 1 (bajo) al 5 (alto). No hay respuestas correctas.</div></div>
+<div id="ratingActions" hidden><button class="primary" id="calculate">Ver recomendación →</button><div class="hint">Solo tienes que indicar cuánto te convence cada opción.</div></div>
 <div class="result" id="result" aria-live="polite">
-<div class="winner"><div class="winner-label">La opción mejor valorada</div><h2 id="winnerTitle"></h2><p id="winnerText"></p><div class="scoreline"><div class="scorebar" id="scorebar"></div></div><div class="result-meta" id="scoreMeta"></div></div>
+<div class="winner"><div class="winner-label">La opción que mejor encaja</div><h2 id="winnerTitle"></h2><p id="winnerText"></p><div class="scoreline"><div class="scorebar" id="scorebar"></div></div><div class="result-meta" id="scoreMeta"></div></div>
 <div class="rankings" id="rankings"></div>
-<div class="next"><strong>Tu siguiente paso</strong><p id="nextStep"></p></div>
-<p class="caveat">Esta recomendación se calcula con las puntuaciones que has dado. Úsala como apoyo para pensar, no como una respuesta infalible.</p>
-<div class="actions"><button class="secondary" id="copyResult">Copiar resultado</button><button class="secondary" id="rethink">Cambiar puntuaciones</button><button class="secondary" id="reset">Nueva decisión</button></div>
+<div class="next"><strong>Qué hacer ahora</strong><p id="nextStep"></p></div>
+<p class="caveat">Es una orientación basada en tus puntuaciones, no una decisión infalible.</p>
+<div class="actions"><button class="secondary" id="copyResult">Copiar resultado</button><button class="secondary" id="reset">Nueva decisión</button></div>
 </div>
 </section>
 <!-- Monetización preparada para Google AdSense. Solo se activa al añadir un ID de editor aprobado y un ID de bloque publicitario. -->
@@ -68,36 +62,30 @@
 <ins id="decisionAd" class="adsbygoogle" style="display:block;min-height:90px" data-ad-client="" data-ad-slot="" data-ad-format="auto" data-full-width-responsive="true"></ins>
 </section>
 <details class="history" id="historyDetails"><summary>🕘 Mi historial reciente (solo en este navegador)</summary><div id="history"><div class="history-empty">Tus decisiones aparecerán aquí después de compararlas.</div></div><button class="secondary" id="clearHistory" style="margin-top:10px">Borrar historial</button></details>
-<section class="content-section">
-<h2>Decide Ahora: genera opciones y elige con más claridad</h2>
-<p>Decide Ahora es un comparador de decisiones gratuito en español. Si no sabes qué alternativas considerar, te propone opciones iniciales según las palabras de tu dilema. Después puedes modificarlas y comparar beneficios, costes, riesgos y prioridades. Las sugerencias son ideas orientativas, no una decisión automática ni asesoramiento profesional.</p>
-<div class="how-grid"><div class="how"><span>✍️</span><b>1. Define el dilema</b><p>Escribe la decisión y las opciones reales que tienes delante.</p></div><div class="how"><span>⚖️</span><b>2. Compara con criterio</b><p>Valora beneficio, coste, riesgo y encaje con tu prioridad.</p></div><div class="how"><span>🎯</span><b>3. Pasa a la acción</b><p>Obtén una recomendación orientativa y un próximo paso concreto.</p></div></div>
+<section class="content-section" style="margin-top:24px">
+<p><a href="/como-tomar-una-decision.html">Cómo tomar una decisión difícil</a> · <a href="/comparar-opciones.html">Cómo comparar opciones</a></p>
+<div class="actions"><button class="secondary" id="shareLink" type="button">Compartir enlace</button><a class="secondary" style="text-decoration:none" href="https://wa.me/?text=Prueba%20Decide%20Ahora%2C%20una%20herramienta%20gratuita%20para%20comparar%20decisiones%3A%20https%3A%2F%2Fdecide-ahora.onrender.com%2F" target="_blank" rel="noopener noreferrer">WhatsApp</a></div><p class="hint" id="shareStatus" aria-live="polite"></p>
 </section>
-<section class="content-section"><h2>Guías para decidir mejor</h2><p>Ideas prácticas para aclarar dudas y comparar alternativas.</p><ul><li><a href="/como-tomar-una-decision.html">Cómo tomar una decisión difícil</a></li><li><a href="/comparar-opciones.html">Cómo comparar opciones y elegir la mejor para ti</a></li></ul></section>
-<section class="content-section" aria-labelledby="faq-title"><h2 id="faq-title">Preguntas frecuentes</h2>
-<div class="faq"><h3>¿Qué es Decide Ahora?</h3><p>Es una herramienta online gratuita para ayudarte a comparar opciones y tomar decisiones con más claridad, sin crear una cuenta.</p></div>
-<div class="faq"><h3>¿Puede sugerirme opciones si no sé por dónde empezar?</h3><p>Sí. Pulsa “Sugerir opciones” y Decide Ahora propondrá alternativas iniciales según el tema de tu pregunta. Revísalas y edítalas para adaptarlas a tu situación.</p></div>
-<div class="faq"><h3>¿Cómo se comparan las opciones?</h3><p>Asignas una puntuación del 1 al 5 al beneficio, coste o esfuerzo, riesgo y encaje con tu prioridad. La herramienta pondera esos factores y muestra el resultado.</p></div>
-<div class="faq"><h3>¿Necesito registrarme?</h3><p>No. Puedes utilizar el comparador directamente desde el navegador.</p></div>
-<div class="faq"><h3>¿Se guardan mis respuestas?</h3><p>El historial se guarda en el almacenamiento local de este navegador. No se envía a un servidor ni aparece automáticamente en otros dispositivos.</p></div>
-<div class="faq"><h3>¿Decide Ahora usa inteligencia artificial?</h3><p>Esta versión utiliza reglas temáticas para sugerir alternativas según las palabras de tu dilema y una fórmula transparente para compararlas. No se conecta a un modelo de IA ni sustituye tu criterio.</p></div>
-</section>
-<section class="content-section" aria-labelledby="share-title"><h2 id="share-title">¿Te ha ayudado? Compártela</h2><p>Decidir es más fácil cuando tienes un método. Pásale la herramienta a alguien que esté dándole vueltas a una decisión.</p><div class="actions"><button class="secondary" id="shareLink" type="button">Copiar enlace</button><a class="secondary" style="text-decoration:none" href="https://wa.me/?text=Prueba%20Decide%20Ahora%2C%20una%20herramienta%20gratuita%20para%20generar%20opciones%20y%20comparar%20decisiones%3A%20https%3A%2F%2Fdecide-ahora.onrender.com%2F" target="_blank" rel="noopener noreferrer">Compartir por WhatsApp</a><a class="secondary" style="text-decoration:none" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdecide-ahora.onrender.com%2F" target="_blank" rel="noopener noreferrer">Compartir en LinkedIn</a></div><p class="hint" id="shareStatus" aria-live="polite"></p></section>
 <footer class="footer"><span>© <span id="year"></span> Decide Ahora</span><span>Una ayuda para pensar mejor, no para pensar por ti.</span></footer>
 </main>
 <script>
 (()=>{
 const $=id=>document.getElementById(id);
-const state={priority:'tranquilidad',risk:'medio',options:[],lastResult:null};
-const weights={benefit:.35,cost:.2,risk:.2,fit:.25};
-document.querySelectorAll('.pills').forEach(group=>group.addEventListener('click',e=>{const b=e.target.closest('button[data-value]');if(!b)return;group.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));if(group.id==='priority')state.priority=b.dataset.value;else state.risk=b.dataset.value;}));
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+const state={options:[],lastResult:null};
+function esc(s){function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function readOptions(){return $('options').value.split('\n').map(x=>x.trim()).filter(Boolean).filter((x,i,a)=>a.indexOf(x)===i).slice(0,5);}
-function compare(){const decision=$('decision').value.trim(),opts=readOptions();if(!decision){$('decision').focus();$('decision').setCustomValidity('Escribe qué necesitas decidir.');$('decision').reportValidity();$('decision').setCustomValidity('');return;}if(opts.length<2){$('options').focus();$('options').setCustomValidity('Escribe al menos dos opciones distintas, una por línea.');$('options').reportValidity();$('options').setCustomValidity('');return;}if(opts.length>5){alert('Para que la comparación sea útil, utiliza como máximo 5 opciones.');return;}
-state.options=opts;$('result').style.display='none';$('ratingActions').hidden=false;$('optionRatings').hidden=false;
-$('optionRatings').innerHTML='<div class="section-head"><span class="num">3</span><div><h2>Valora cada opción</h2><p>1 = bajo · 5 = alto. Puntúa según tu situación.</p></div></div>'+opts.map((o,i)=>'<article class="option-card" data-index="'+i+'"><div class="option-title">'+(i+1)+'. '+esc(o)+'</div>'+slider(i,'benefit','Beneficio esperado',4)+slider(i,'cost','Coste o esfuerzo',3)+slider(i,'risk','Riesgo o incertidumbre',3)+slider(i,'fit','Encaje con '+priorityLabel(),4)+'</article>').join('')+'<p class="rating-note">Para “coste” y “riesgo”, una puntuación alta significa más coste o riesgo. Se tienen en cuenta en sentido negativo.</p>';
-$('optionRatings').querySelectorAll('input[type=range]').forEach(inp=>inp.addEventListener('input',()=>{inp.parentElement.querySelector('output').value=inp.value;}));
-$('ratingActions').scrollIntoView({behavior:'smooth',block:'nearest'});
+function compare(){
+ const decision=$('decision').value.trim();
+ if(!decision){$('decision').focus();$('decision').setCustomValidity('Escribe qué necesitas decidir.');$('decision').reportValidity();$('decision').setCustomValidity('');return;}
+ let opts=readOptions();
+ if(opts.length<2){suggestOptions();opts=readOptions();}
+ if(opts.length<2){$('options').focus();return;}
+ if(opts.length>5){opts=opts.slice(0,5);$('options').value=opts.join('\n');}
+ state.options=opts;
+ $('result').style.display='none';$('ratingActions').hidden=false;$('optionRatings').hidden=false;
+ $('optionRatings').innerHTML='<div class="section-head"><span class="num">2</span><div><h2>¿Cuál te convence más?</h2><p>Una puntuación rápida por opción; 5 significa que encaja mucho contigo.</p></div></div>'+opts.map((o,i)=>'<article class="option-card" data-index="'+i+'"><div class="option-title">'+(i+1)+'. '+esc(o)+'</div>'+slider(i,'fit','¿Cuánto te convence?',3)+'</article>').join('');
+ $('optionRatings').querySelectorAll('input[type=range]').forEach(inp=>inp.addEventListener('input',()=>{inp.parentElement.querySelector('output').value=inp.value;}));
+ $('ratingActions').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 // Google AdSense: no carga ni muestra anuncios hasta configurar IDs válidos tras la aprobación de la cuenta.
 const ADSENSE_CLIENT = '';
@@ -115,11 +103,10 @@ if (/^ca-pub-\\d+$/.test(ADSENSE_CLIENT) && /^\\d+$/.test(ADSENSE_SLOT)) {
   document.head.appendChild(adsScript);
 }
 
-function priorityLabel(){return ({dinero:'ahorrar o ganar dinero',tiempo:'ahorrar tiempo',tranquilidad:'tu tranquilidad',crecer:'crecer y aprender'})[state.priority];}
 function slider(i,key,label,val){return '<div class="rating-row"><label for="r'+i+'-'+key+'">'+label+'</label><output for="r'+i+'-'+key+'">'+val+'</output><input type="range" id="r'+i+'-'+key+'" min="1" max="5" step="1" value="'+val+'" aria-label="'+esc(label)+' para '+esc(state.options[i])+'"></div>';}
-function scoreOption(i){const get=k=>Number($('r'+i+'-'+k).value);let w={...weights};if(state.priority==='dinero')w={benefit:.20,cost:.40,risk:.20,fit:.20};if(state.priority==='tiempo')w={benefit:.20,cost:.40,risk:.10,fit:.30};if(state.priority==='tranquilidad')w={benefit:.25,cost:.15,risk:.35,fit:.25};if(state.priority==='crecer')w={benefit:.35,cost:.15,risk:.15,fit:.35};let riskWeight=w.risk;if(state.risk==='dificil')riskWeight+=.12;if(state.risk==='facil')riskWeight=Math.max(.08,riskWeight-.08);const total=w.benefit+w.cost+riskWeight+w.fit;const raw=(get('benefit')*w.benefit+(6-get('cost'))*w.cost+(6-get('risk'))*riskWeight+get('fit')*w.fit)/total;return {name:state.options[i],score:Math.round(raw*20),raw};}
-function nextAction(winner){if(state.risk==='dificil')return 'Antes de comprometerte, verifica el supuesto más importante de “'+winner+'” y escribe qué tendría que ocurrir para que cambiaras de opinión.';if(state.risk==='facil')return 'Haz una prueba pequeña de “'+winner+'” durante los próximos 7 días. Define de antemano qué resultado te haría continuar.';return 'Reserva 15 minutos hoy para dar el primer paso de “'+winner+'”. Después, revisa qué has aprendido antes de comprometerte más.';}
-function calculate(){const scores=state.options.map((_,i)=>scoreOption(i)).sort((a,b)=>b.score-a.score);const winner=scores[0];state.lastResult={decision:$('decision').value.trim(),winner:winner.name,scores,priority:state.priority,risk:state.risk,date:new Date().toLocaleString('es-ES',{dateStyle:'short',timeStyle:'short'})};$('winnerTitle').textContent=winner.name;$('winnerText').textContent='Es la opción con mayor puntuación según los criterios que has marcado.';$('scorebar').style.width=winner.score+'%';$('scoreMeta').textContent='Puntuación ponderada orientativa: '+winner.score+'/100';$('rankings').innerHTML='<div class="field-label">Comparativa de tus opciones</div>'+scores.map((s,i)=>'<div class="rank-item"><span class="rank-number">'+(i+1)+'</span><span>'+esc(s.name)+'</span><span class="rank-score">'+s.score+'/100</span></div>').join('');$('nextStep').textContent=nextAction(winner.name);$('result').style.display='block';saveHistory(state.lastResult);$('result').scrollIntoView({behavior:'smooth',block:'start'});}
+function scoreOption(i){const score=Number($('r'+i+'-fit').value);return {name:state.options[i],score:score*20,raw:score};}
+function nextAction(winner){return 'Da hoy un paso pequeño para explorar “'+winner+'”. Si implica mucho dinero, salud o un cambio difícil de revertir, comprueba antes el dato más importante.';}
+function calculate(){const scores=state.options.map((_,i)=>scoreOption(i)).sort((a,b)=>b.score-a.score);const winner=scores[0];state.lastResult={decision:$('decision').value.trim(),winner:winner.name,scores,date:new Date().toLocaleString('es-ES',{dateStyle:'short',timeStyle:'short'})};$('winnerTitle').textContent=winner.name;$('winnerText').textContent='Es la opción que más te convence según tus puntuaciones.';$('scorebar').style.width=winner.score+'%';$('scoreMeta').textContent='Encaje que has indicado: '+winner.score+'/100';$('rankings').innerHTML='<div class="field-label">Tus opciones, de mayor a menor encaje</div>'+scores.map((s,i)=>'<div class="rank-item"><span class="rank-number">'+(i+1)+'</span><span>'+esc(s.name)+'</span><span class="rank-score">'+s.score+'/100</span></div>').join('');$('nextStep').textContent=nextAction(winner.name);$('result').style.display='block';saveHistory(state.lastResult);$('result').scrollIntoView({behavior:'smooth',block:'start'});}
 function saveHistory(item){let h=[];try{h=JSON.parse(localStorage.getItem('decideHistory')||'[]')}catch{}h.unshift(item);try{localStorage.setItem('decideHistory',JSON.stringify(h.slice(0,8)))}catch{}renderHistory();}
 function renderHistory(){let h=[];try{h=JSON.parse(localStorage.getItem('decideHistory')||'[]')}catch{}$('history').innerHTML=h.length?h.map(x=>'<div class="history-item"><strong>'+esc(x.decision||'Decisión')+'</strong><span>→ '+esc(x.winner||'')+' · '+esc(x.date||'')+'</span></div>').join(''):'<div class="history-empty">Tus decisiones aparecerán aquí después de compararlas.</div>';}
 
@@ -145,8 +132,10 @@ function suggestOptions(){
 }
 
 $('suggestOptions').addEventListener('click',suggestOptions);
-$('compare').addEventListener('click',compare);$('calculate').addEventListener('click',calculate);$('rethink').addEventListener('click',()=>{$('result').style.display='none';$('ratingActions').hidden=false;$('optionRatings').hidden=false;$('optionRatings').scrollIntoView({behavior:'smooth',block:'start'});});$('reset').addEventListener('click',()=>{$('decision').value='';$('options').value='';$('optionRatings').hidden=true;$('ratingActions').hidden=true;$('result').style.display='none';state.options=[];state.lastResult=null;$('decision').focus();window.scrollTo({top:0,behavior:'smooth'});});$('copyResult').addEventListener('click',async()=>{if(!state.lastResult)return;const r=state.lastResult;const text='Decisión: '+r.decision+'\nRecomendación orientativa: '+r.winner+'\nComparativa: '+r.scores.map((x,i)=>(i+1)+'. '+x.name+' — '+x.score+'/100').join('\n')+'\nSiguiente paso: '+nextAction(r.winner);try{await navigator.clipboard.writeText(text);$('copyResult').textContent='Copiado ✓';setTimeout(()=>$('copyResult').textContent='Copiar resultado',1800)}catch{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();$('copyResult').textContent='Copiado ✓';setTimeout(()=>$('copyResult').textContent='Copiar resultado',1800);}});
-$('clearHistory').addEventListener('click',()=>{if(confirm('¿Borrar el historial guardado en este navegador?')){localStorage.removeItem('decideHistory');renderHistory();}});$('shareLink').addEventListener('click',async()=>{try{await navigator.clipboard.writeText('https://decide-ahora.onrender.com/');$('shareStatus').textContent='Enlace copiado. ¡Gracias por compartir!';}catch{$('shareStatus').textContent='Copia este enlace: https://decide-ahora.onrender.com/';}});$('year').textContent=new Date().getFullYear();renderHistory();
+$('compare').addEventListener('click',compare);$('calculate').addEventListener('click',calculate);
+$('reset').addEventListener('click',()=>{$('decision').value='';$('options').value='';$('optionRatings').hidden=true;$('ratingActions').hidden=true;$('result').style.display='none';state.options=[];state.lastResult=null;$('decision').focus();window.scrollTo({top:0,behavior:'smooth'});});
+$('shareLink').addEventListener('click',async()=>{try{await navigator.clipboard.writeText('https://decide-ahora.onrender.com/');$('shareStatus').textContent='Enlace copiado.';}catch{$('shareStatus').textContent='https://decide-ahora.onrender.com/';}});
+$('year').textContent=new Date().getFullYear();renderHistory();
 })();
 </script>
 </body>
