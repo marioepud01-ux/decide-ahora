@@ -8,9 +8,9 @@
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://decide-ahora.onrender.com/">
 <meta name="theme-color" content="#f7f8fc">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3">
-<link rel="shortcut icon" href="/favicon.svg?v=3" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/favicon.svg?v=3">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20261028">
+<link rel="shortcut icon" href="/favicon.svg?v=20261028" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg?v=20261028">
 <meta name="author" content="Decide Ahora">\n<meta name="keywords" content="tomar decisiones, cómo tomar una decisión, comparar opciones, ayuda para decidir, no sé qué hacer, herramienta para decidir, decidir entre dos opciones">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta property="og:type" content="website">
@@ -83,7 +83,7 @@ const priorityData=[
  {id:'bienestar',label:'❤️ Bienestar',words:['familia','pareja','amistad','salud','bienestar','feliz','disfrut','ilusión','ilusion','calidad de vida','equilibrio','tiempo libre']},
  {id:'impacto',label:'✨ Ilusión',words:['ilusión','ilusion','gust','pasión','pasion','interés','interes','motiv','creativ','divert','satisfac','propósito','proposito']}
 ];
-function normalize(s){return String(s||'').toLocaleLowerCase('es').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'');}
+function normalize(s){return String(s||'').toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
 function compare(){
  const decision=$('decision').value.trim();
  if(!decision){$('decision').focus();$('decision').setCustomValidity('Escribe qué necesitas decidir.');$('decision').reportValidity();$('decision').setCustomValidity('');return;}
