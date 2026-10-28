@@ -9,6 +9,8 @@
 <link rel="canonical" href="https://decide-ahora.onrender.com/">
 <meta name="theme-color" content="#f7f8fc">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
 <meta name="author" content="Decide Ahora">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta property="og:type" content="website">
@@ -60,6 +62,11 @@
 <div class="actions"><button class="secondary" id="copyResult">Copiar resultado</button><button class="secondary" id="rethink">Cambiar puntuaciones</button><button class="secondary" id="reset">Nueva decisión</button></div>
 </div>
 </section>
+<!-- Monetización preparada para Google AdSense. Solo se activa al añadir un ID de editor aprobado y un ID de bloque publicitario. -->
+<section id="adContainer" class="content-section" aria-label="Publicidad" hidden>
+<div style="font-size:10px;color:var(--muted);text-align:center;margin-bottom:6px">PUBLICIDAD</div>
+<ins id="decisionAd" class="adsbygoogle" style="display:block;min-height:90px" data-ad-client="" data-ad-slot="" data-ad-format="auto" data-full-width-responsive="true"></ins>
+</section>
 <details class="history" id="historyDetails"><summary>🕘 Mi historial reciente (solo en este navegador)</summary><div id="history"><div class="history-empty">Tus decisiones aparecerán aquí después de compararlas.</div></div><button class="secondary" id="clearHistory" style="margin-top:10px">Borrar historial</button></details>
 <section class="content-section">
 <h2>Decide Ahora: genera opciones y elige con más claridad</h2>
@@ -92,6 +99,22 @@ $('optionRatings').innerHTML='<div class="section-head"><span class="num">3</spa
 $('optionRatings').querySelectorAll('input[type=range]').forEach(inp=>inp.addEventListener('input',()=>{inp.parentElement.querySelector('output').value=inp.value;}));
 $('ratingActions').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
+// Google AdSense: no carga ni muestra anuncios hasta configurar IDs válidos tras la aprobación de la cuenta.
+const ADSENSE_CLIENT = '';
+const ADSENSE_SLOT = '';
+if (/^ca-pub-\\d+$/.test(ADSENSE_CLIENT) && /^\\d+$/.test(ADSENSE_SLOT)) {
+  const ad = $('decisionAd');
+  ad.setAttribute('data-ad-client', ADSENSE_CLIENT);
+  ad.setAttribute('data-ad-slot', ADSENSE_SLOT);
+  $('adContainer').hidden = false;
+  const adsScript = document.createElement('script');
+  adsScript.async = true;
+  adsScript.crossOrigin = 'anonymous';
+  adsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + encodeURIComponent(ADSENSE_CLIENT);
+  adsScript.onload = () => { try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {} };
+  document.head.appendChild(adsScript);
+}
+
 function priorityLabel(){return ({dinero:'ahorrar o ganar dinero',tiempo:'ahorrar tiempo',tranquilidad:'tu tranquilidad',crecer:'crecer y aprender'})[state.priority];}
 function slider(i,key,label,val){return '<div class="rating-row"><label for="r'+i+'-'+key+'">'+label+'</label><output for="r'+i+'-'+key+'">'+val+'</output><input type="range" id="r'+i+'-'+key+'" min="1" max="5" step="1" value="'+val+'" aria-label="'+esc(label)+' para '+esc(state.options[i])+'"></div>';}
 function scoreOption(i){const get=k=>Number($('r'+i+'-'+k).value);let w={...weights};if(state.priority==='dinero')w={benefit:.20,cost:.40,risk:.20,fit:.20};if(state.priority==='tiempo')w={benefit:.20,cost:.40,risk:.10,fit:.30};if(state.priority==='tranquilidad')w={benefit:.25,cost:.15,risk:.35,fit:.25};if(state.priority==='crecer')w={benefit:.35,cost:.15,risk:.15,fit:.35};let riskWeight=w.risk;if(state.risk==='dificil')riskWeight+=.12;if(state.risk==='facil')riskWeight=Math.max(.08,riskWeight-.08);const total=w.benefit+w.cost+riskWeight+w.fit;const raw=(get('benefit')*w.benefit+(6-get('cost'))*w.cost+(6-get('risk'))*riskWeight+get('fit')*w.fit)/total;return {name:state.options[i],score:Math.round(raw*20),raw};}
