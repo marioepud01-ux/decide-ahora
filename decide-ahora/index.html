@@ -72,13 +72,13 @@
 (()=>{
 const $=id=>document.getElementById(id);
 const state={options:[],lastResult:null};
-function esc(s){function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function readOptions(){return $('options').value.split('\n').map(x=>x.trim()).filter(Boolean).filter((x,i,a)=>a.indexOf(x)===i).slice(0,5);}
 function compare(){
  const decision=$('decision').value.trim();
  if(!decision){$('decision').focus();$('decision').setCustomValidity('Escribe qué necesitas decidir.');$('decision').reportValidity();$('decision').setCustomValidity('');return;}
  let opts=readOptions();
- if(opts.length<2){suggestOptions();opts=readOptions();}
+ if(opts.length<2){const existing=opts.slice();suggestOptions();const suggestions=readOptions();opts=[...existing,...suggestions.filter(x=>!existing.includes(x))].slice(0,5);$('options').value=opts.join('\n');}
  if(opts.length<2){$('options').focus();return;}
  if(opts.length>5){opts=opts.slice(0,5);$('options').value=opts.join('\n');}
  state.options=opts;
