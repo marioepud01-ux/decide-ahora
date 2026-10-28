@@ -101,7 +101,7 @@ function saveHistory(item){let h=[];try{h=JSON.parse(localStorage.getItem('decid
 function renderHistory(){let h=[];try{h=JSON.parse(localStorage.getItem('decideHistory')||'[]')}catch{}$('history').innerHTML=h.length?h.map(x=>'<div class="history-item"><strong>'+esc(x.decision||'Decisión')+'</strong><span>→ '+esc(x.winner||'')+' · '+esc(x.date||'')+'</span></div>').join(''):'<div class="history-empty">Tus decisiones aparecerán aquí después de compararlas.</div>';}
 
 function suggestOptions(){
- const q=$('decision').value.trim(), t=q.toLocaleLowerCase('es').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'');
+ const q=$('decision').value.trim(), t=q.toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
  if(!q){$('decision').focus();$('decision').setCustomValidity('Escribe primero qué necesitas decidir para poder sugerir opciones.');$('decision').reportValidity();$('decision').setCustomValidity('');return;}
  const sets=[
  {keys:['trabajo','empleo','jefe','carrera','laboral','sueldo','renunciar','dimiti','oferta de trabajo'],opts:['Quedarme donde estoy y negociar mejoras','Buscar otro empleo mientras mantengo el actual','Cambiar de trabajo cuando tenga una oferta firme','Formarme para acceder a un puesto mejor','Empezar un proyecto propio en paralelo']},
@@ -115,7 +115,7 @@ function suggestOptions(){
  {keys:['gimnas','entren','deporte','fitness','salud','dieta','nutric','cuerpo'],opts:['Mantener la rutina actual unas semanas y medir resultados','Probar un cambio pequeño y sostenible','Pedir orientación profesional si hay dudas importantes','Elegir la opción más fácil de mantener en mi rutina','Comparar resultados, coste, tiempo y posibles riesgos']},
  {keys:['amigo','amistad','familia','padre','madre','hermano','conflicto'],opts:['Hablar directamente y explicar cómo me afecta','Escuchar su punto de vista antes de decidir','Poner un límite claro y respetuoso','Tomar distancia temporal para pensar','Pedir ayuda a una persona neutral de confianza']}
  ];
- const match=sets.find(s=>s.keys.some(k=>t.includes(k.normalize('NFD').replace(/[\\u0300-\\u036f]/g,''))));
+ const match=sets.find(s=>s.keys.some(k=>t.includes(k.normalize('NFD').replace(/[\u0300-\u036f]/g,''))));
  const opts=match?match.opts:['Mantener la situación actual y revisar más adelante','Probar un cambio pequeño y reversible','Elegir la opción con mejor equilibrio entre beneficio, coste y riesgo','Pedir una segunda opinión a alguien de confianza','Definir qué información me falta y decidir cuando la tenga'];
  $('options').value=opts.slice(0,5).join('\n');
  $('options').focus();$('options').scrollIntoView({behavior:'smooth',block:'center'});
