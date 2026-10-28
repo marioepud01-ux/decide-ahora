@@ -134,6 +134,7 @@ function suggestOptions(){
 $('suggestOptions').addEventListener('click',suggestOptions);
 $('compare').addEventListener('click',compare);$('calculate').addEventListener('click',calculate);
 $('reset').addEventListener('click',()=>{$('decision').value='';$('options').value='';$('optionRatings').hidden=true;$('ratingActions').hidden=true;$('result').style.display='none';state.options=[];state.lastResult=null;$('decision').focus();window.scrollTo({top:0,behavior:'smooth'});});
+$('clearHistory').addEventListener('click',()=>{if(confirm('¿Borrar el historial guardado en este navegador?')){localStorage.removeItem('decideHistory');renderHistory();}});
 $('shareLink').addEventListener('click',async()=>{try{await navigator.clipboard.writeText('https://decide-ahora.onrender.com/');$('shareStatus').textContent='Enlace copiado.';}catch{$('shareStatus').textContent='https://decide-ahora.onrender.com/';}});
 $('year').textContent=new Date().getFullYear();renderHistory();
 })();
