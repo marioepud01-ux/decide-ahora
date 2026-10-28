@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mes-en-orden.onrender.com/sitemap.xml
