@@ -114,7 +114,7 @@ function suggestOptions(){
  ];
  const match=sets.find(s=>s.keys.some(k=>t.includes(k)));
  const opts=match?match.opts:['Mantener la situación actual y revisar más adelante','Probar un cambio pequeño y reversible','Elegir la opción con mejor equilibrio entre beneficio, coste y riesgo','Pedir una segunda opinión a alguien de confianza','Definir qué información me falta y decidir cuando la tenga'];
- $('options').value=opts.slice(0,5).join('\\n');
+ $('options').value=opts.slice(0,5).join('\n');
  $('options').focus();$('options').scrollIntoView({behavior:'smooth',block:'center'});
 }
 
