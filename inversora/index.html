@@ -306,7 +306,7 @@ const terms=[["Rentabilidad bruta","Ganancia de una inversión antes de restar c
 function scoreColor(x){return x>=8?'':x>=6?'amber':'red'}
 function card(i){let n=JSON.stringify(i.name).replace(/"/g,'&quot;');return `<div class="card" onclick="openDetail(${n})"><button class="favorite-heart ${isFavorite(i.name)?'is-favorite':''}" aria-label="${isFavorite(i.name)?'Quitar de favoritos':'Añadir a favoritos'}" title="${isFavorite(i.name)?'Quitar de favoritos':'Añadir a favoritos'}" onclick="event.stopPropagation();toggleFavorite(${n})">${isFavorite(i.name)?'♥':'♡'}</button><span class="tag">${i.cat}</span><h3>${i.name}</h3><p>${i.desc}</p><div class="meta"><span class="pill ${scoreColor(i.score)}">Nota ${i.score}/10</span><span class="score">Riesgo ${i.risk}/10</span></div><p style="margin-top:10px"><b>Rentabilidad orientativa:</b> ${i.ret}</p></div>`}
 const categoryMeta={"Mercados financieros":{icon:"📈",short:"Renta variable, renta fija, mercado monetario, derivados, fondos y ETF.",subtypes:["Renta variable","Renta fija","Mercado monetario","Derivados","Fondos y ETF","Inmobiliario cotizado","Otros activos financieros"]},"Inmobiliario":{icon:"🏠",short:"Inmueble directo, REITs y SOCIMI, fondos inmobiliarios y crowdfunding.",subtypes:["Inmueble directo","REITs y SOCIMI","Fondos inmobiliarios","Crowdfunding inmobiliario","Suelo y terrenos","Otros inmuebles"]},"Empresas y negocios":{icon:"🏢",short:"Negocio propio, participaciones privadas, venture capital y private equity.",subtypes:["Negocio propio","Negocios digitales","Participaciones privadas","Venture capital y private equity","Propiedad intelectual","Otros negocios"]},"Alternativos":{icon:"🧩",short:"Materias primas, criptoactivos, deuda privada, arte y coleccionables.",subtypes:["Materias primas","Criptoactivos","Deuda privada y préstamos","Arte y coleccionables","Otros alternativos"]}};
-investments.forEach(i=>{if(i.cat==="Financiación privada y otras inversiones"){if(/capital riesgo|private equity|startup/i.test(i.name))i.cat="Empresas y negocios";else i.cat="Alternativos";}});
+investments.forEach(i=>{if(i.cat==="Financiación privada y otras inversiones"){if(/capital riesgo|private equity|startup/i.test(i.name))i.cat="Empresas y negocios";else i.cat="Alternativos";}if(/reit|socimi/i.test(i.name))i.cat="Inmobiliario";if(/oro|criptomonedas|bitcoin|materias primas/i.test(i.name))i.cat="Alternativos";});
 function subtypeFor(i){
  const n=i.name.toLowerCase(),c=i.cat;
  if(c==="Mercados financieros"){
@@ -315,7 +315,7 @@ function subtypeFor(i){
   if(/derivad|opcion|futuro|warrant/.test(n))return "Derivados";
   if(/depósito|cuenta remunerada|letras del tesoro|mercado monetario/.test(n))return "Mercado monetario";
   if(/bono|obligación|renta fija|pagaré/.test(n))return "Renta fija";
-  if(/socimi|reit|inmobiliario cotizado/.test(n))return "Inmobiliario cotizado";
+  
   return "Otros activos financieros";
  }
  if(c==="Inmobiliario"){
