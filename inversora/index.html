@@ -204,6 +204,95 @@ select option{padding:12px;background:#fff;color:#101828}
 .community-report{color:#b42318!important}.moderation-panel{margin:18px 0;padding:17px;background:#fff;border:1px solid #fecdca;border-radius:15px}.moderation-panel h3{margin:0 0 10px;color:#b42318}.moderation-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;border-top:1px solid #f2f4f7;font-size:12px}.moderation-row button{padding:8px 10px;border-radius:8px;background:#fef3f2;color:#b42318;font-weight:750}
 @media(max-width:700px){.home-map-intro{display:block;padding:18px}.home-map-steps{justify-content:flex-start;margin-top:14px}.category-tile-v2{min-height:220px;padding:13px}.inv-footer{display:block}.inv-footer nav{margin:10px 0}.legal-page{padding:18px}.legal-page h1{font-size:31px}}
 </style>
+
+<style id="inversora-visual-refresh">
+/* Navegación coherente en escritorio y móvil */
+header{gap:18px;padding:13px 17px;border-radius:22px;background:rgba(255,255,255,.92);border-color:#e7ecf5;box-shadow:0 12px 34px rgba(16,24,40,.075)}
+.logo{font-size:26px;letter-spacing:-1.25px}
+.logo:before{width:39px;height:39px;flex-basis:39px;border-radius:13px;font-size:23px}
+.nav{flex:1;justify-content:flex-end;gap:5px;padding:5px;background:#f4f6fb;border:1px solid #e9edf5;border-radius:16px;overflow:visible}
+.nav-indicator{border-radius:12px;background:#fff;box-shadow:0 4px 12px rgba(16,24,40,.08)}
+.nav button{justify-content:center;min-height:43px;padding:10px 14px;border-radius:12px;font-size:13px;color:#667085}
+.nav button:before{font-size:16px}
+.nav button.active{color:#174fc7;background:#fff}
+.nav button:hover{background:#fff;color:#155eef}
+.nav button:focus-visible,.category-tile:focus-visible,.subtype-chip:focus-visible{outline:3px solid #84adff;outline-offset:2px}
+.home-map-intro{position:relative;overflow:hidden;align-items:center;padding:25px 28px;border-radius:22px;background:linear-gradient(110deg,#fff 0%,#f8faff 72%,#eef4ff 100%);border:1px solid #e1e9f8;box-shadow:0 10px 30px rgba(16,24,40,.045)}
+.home-map-intro:after{content:"↗";position:absolute;right:27%;top:-37px;font-size:170px;line-height:1;color:#155eef08;font-weight:900;pointer-events:none}
+.home-map-intro>div:first-child{position:relative;z-index:1}
+.home-map-kicker{font-size:11px;letter-spacing:.12em}
+.home-map-intro h2{font-size:clamp(23px,3vw,30px);letter-spacing:-.9px}
+.home-map-intro p{font-size:14px;max-width:650px}
+.home-map-steps{position:relative;z-index:1}
+.home-map-steps span{background:#fff;border-color:#e1e9f8;padding:9px 12px}
+.home-section-categories .section-head{align-items:flex-end;margin:0 0 17px}
+.home-section-categories .section-head h2{font-size:26px;letter-spacing:-.8px}
+.home-section-categories .section-head small{font-size:13px}
+.category-grid{gap:15px}
+.category-tile-v2{position:relative;isolation:isolate;overflow:hidden;min-height:235px;padding:21px;border-radius:21px;border-color:#e6eaf2;background:linear-gradient(150deg,#fff 0%,#fff 58%,#f5f8ff 100%);box-shadow:0 5px 18px rgba(16,24,40,.035);gap:11px}
+.category-tile-v2:after{content:"";position:absolute;z-index:-1;right:-30px;top:-35px;width:120px;height:120px;border-radius:50%;background:#155eef08;transition:transform .3s ease}
+.category-tile-v2:hover:after,.category-tile-v2.selected:after{transform:scale(1.7)}
+.category-tile-v2:hover,.category-tile-v2.selected{border-color:#9bbcff;box-shadow:0 13px 32px rgba(21,94,239,.11);transform:translateY(-3px)}
+.category-tile-v2.selected{background:linear-gradient(150deg,#fff,#f0f5ff)}
+.category-tile-v2 .cat-icon{width:48px;height:48px;border-radius:15px;background:linear-gradient(145deg,#edf3ff,#e2ebff);font-size:25px;box-shadow:inset 0 0 0 1px #dce7ff}
+.category-tile-v2 strong{font-size:17px;letter-spacing:-.25px}
+.category-tile-v2 .category-description{font-size:12.5px;line-height:1.55;color:#667085}
+.category-examples{font-size:11.5px;line-height:1.6;background:#f4f6fa;color:#475467;border:1px solid #edf0f5;border-radius:11px;padding:9px 10px}
+.category-count{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:3px;font-size:12px}
+.subtype-panel{border-radius:20px;padding:19px 21px;box-shadow:0 5px 18px rgba(16,24,40,.035)}
+.subtype-panel-head b{font-size:15px}
+.subtype-chip{background:#f8f9fc;border-color:#e8ecf3;padding:9px 14px;font-weight:650;transition:all .18s}
+.subtype-chip:hover{border-color:#9bbcff;color:#155eef;background:#f4f7ff}
+.subtype-chip.active{background:#155eef;border-color:#155eef;box-shadow:0 4px 12px #155eef25}
+.filter-field select,.toolbar select,.results-head select{appearance:none;-webkit-appearance:none;width:100%;min-height:45px;padding:11px 42px 11px 13px;border:1px solid #dce3ee;border-radius:12px;background-color:#fff;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;color:#344054;font-weight:600;font-size:13px;box-shadow:0 1px 2px rgba(16,24,40,.025);transition:border-color .18s,box-shadow .18s}
+.filter-field select:focus,.toolbar select:focus,.results-head select:focus,.filter-field input:focus,.toolbar input:focus{outline:0;border-color:#84adff;box-shadow:0 0 0 4px rgba(21,94,239,.10)}
+.filter-field input,.toolbar input{min-height:45px;border-radius:12px;border-color:#dce3ee}
+.filters{border-radius:19px;box-shadow:0 5px 18px rgba(16,24,40,.04)}
+.results-head select{width:auto}
+.hero{box-shadow:0 16px 40px rgba(16,24,40,.13)}
+.quick-search{box-shadow:0 8px 24px rgba(0,0,0,.12)}
+@media(max-width:800px){
+ .app{padding:12px 12px 88px}
+ header{position:sticky;top:7px;display:flex;flex-direction:column;align-items:stretch;gap:11px;padding:12px;border-radius:19px;margin-bottom:17px}
+ .logo{align-self:flex-start;margin:0;font-size:24px}
+ .logo:before{width:36px;height:36px;flex-basis:36px}
+ .nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;width:100%;max-width:none;overflow:visible;padding:5px;border-radius:15px;justify-content:stretch}
+ .nav-indicator{display:none}
+ .nav button{width:100%;min-width:0;min-height:42px;flex:none;justify-content:center;gap:5px;padding:8px 5px;border:1px solid transparent;border-radius:11px;font-size:12px;white-space:nowrap}
+ .nav button:before{font-size:14px}
+ .nav button.active{background:#fff;border-color:#e1e9f8;box-shadow:0 3px 9px rgba(16,24,40,.06);color:#155eef}
+ .nav button:hover{background:#fff}
+ .home-map-intro{display:block;padding:19px 18px;margin-bottom:19px}
+ .home-map-intro:after{right:0;top:20px;font-size:120px}
+ .home-map-intro h2{font-size:23px}
+ .home-map-steps{justify-content:flex-start;margin-top:15px}
+ .home-map-steps span{font-size:11px;padding:7px 9px}
+ .home-section-categories .section-head{display:block}
+ .home-section-categories .section-head h2{font-size:23px}
+ .home-section-categories .section-head small{display:block;margin-top:5px}
+ .category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .category-tile-v2{min-height:244px;padding:14px 12px;border-radius:17px;gap:9px}
+ .category-tile-v2 .cat-icon{width:41px;height:41px;border-radius:13px;font-size:22px}
+ .category-tile-v2 strong{font-size:14px}
+ .category-tile-v2 .category-description{font-size:11px;line-height:1.45}
+ .category-examples{font-size:10px;line-height:1.45;padding:7px}
+ .category-count{font-size:10.5px}
+ .subtype-panel{padding:14px;border-radius:17px}
+ .subtype-panel-head{flex-direction:row;align-items:center}
+ .subtype-chips{gap:7px}
+ .subtype-chip{font-size:11px;padding:8px 11px}
+ .filter-field select,.toolbar select,.results-head select{min-height:44px;font-size:13px}
+}
+@media(max-width:390px){
+ .nav button{font-size:11px;gap:3px}
+ .category-tile-v2{min-height:255px}
+ .category-tile-v2 .category-description{font-size:10.5px}
+ .category-examples{font-size:9.5px}
+}
+@media(prefers-reduced-motion:reduce){
+ .nav button,.nav-indicator,.category-tile-v2,.category-tile-v2:after,.subtype-chip{transition:none!important}
+}
+</style>
 </head>
 <body>
 <div class="app">
@@ -219,8 +308,8 @@ select option{padding:12px;background:#fff;color:#101828}
 <p>Explora opciones, compara sus características y simula escenarios en un solo lugar. Sin jerga innecesaria.</p>
 <div class="quick-search"><input id="heroSearch" placeholder="Prueba: fondos indexados, alquiler, dividendos, oro…" onkeydown="if(event.key==='Enter') doSearch(this.value)" aria-label="Buscar inversiones"><button onclick="doSearch(document.getElementById('heroSearch').value)">Buscar inversiones ↗</button></div><div class="hero-stats"><div class="hero-stat"><b>44</b><span>alternativas de inversión</span></div><div class="hero-stat"><b>4</b><span>grandes categorías</span></div><div class="hero-stat"><b>1 sitio</b><span>para explorar y comparar</span></div></div>
 </section>
-<section class="home-map-intro"><div><span class="home-map-kicker">El mapa de la inversión</span><h2>Cuatro grandes familias. Muchas formas de invertir.</h2><p>Primero identifica la familia; después explora sus subtipos y compara riesgo, liquidez, costes y esfuerzo.</p></div><div class="home-map-steps"><span><b>1</b> Entiende</span><span><b>2</b> Compara</span><span><b>3</b> Simula</span></div></section>
-<section class="section home-section home-section-categories"><div class="section-head"><h2>Las 4 familias de inversión</h2><small>Entra en una familia para ver sus alternativas</small></div><div id="categoryGrid" class="category-grid"></div><div class="subtype-panel"><div class="subtype-panel-head"><div><b id="subtypeTitle">Todos los tipos de inversión</b><div><small style="color:var(--muted)">Selecciona un subtipo para ver solo esas alternativas</small></div></div><button class="chip" onclick="clearCategorySelection()">Ver todas</button></div><div id="subtypeChips" class="subtype-chips"></div></div></section>
+<section class="home-map-intro"><div><span class="home-map-kicker">Explora el universo de inversión</span><h2>Encuentra tu forma de invertir.</h2><p>Descubre las categorías, compara alternativas y entiende qué implica cada inversión antes de decidir.</p></div><div class="home-map-steps"><span><b>1</b> Entiende</span><span><b>2</b> Compara</span><span><b>3</b> Simula</span></div></section>
+<section class="section home-section home-section-categories"><div class="section-head"><h2>Categorías de inversión</h2><small>Explora cada categoría y descubre sus distintas formas de invertir</small></div><div id="categoryGrid" class="category-grid"></div><div class="subtype-panel"><div class="subtype-panel-head"><div><b id="subtypeTitle">Todos los tipos de inversión</b><div><small style="color:var(--muted)">Selecciona un subtipo para ver solo esas alternativas</small></div></div><button class="chip" onclick="clearCategorySelection()">Ver todas</button></div><div id="subtypeChips" class="subtype-chips"></div></div></section>
 <section class="section home-section home-section-goals"><div class="section-head"><h2>Explora por objetivo</h2></div><div class="chips">
 <button class="chip" onclick="filterGoal('Ingresos')">💶 Generar ingresos</button><button class="chip" onclick="filterGoal('Crecimiento')">📈 Hacer crecer patrimonio</button><button class="chip" onclick="filterGoal('Liquidez')">🛡️ Mantener liquidez</button><button class="chip" onclick="filterGoal('Inmobiliaria')">🏠 Invertir en inmobiliario</button><button class="chip" onclick="filterGoal('Pasiva')">⏱️ Poco mantenimiento</button>
 </div></section>
