@@ -1,0 +1,27 @@
+name: Mejorar Inversora
+on:
+  push:
+    branches: [inversora-deploy]
+    paths:
+      - "inversora/enhance.py"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  patch-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: inversora-deploy
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Aplicar mejoras
+        run: python inversora/enhance.py
+      - name: Guardar versión mejorada
+        run: |
+          git config user.name "inversora-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add inversora/index.html
+          git diff --cached --quiet || (git commit -m "Mejora experiencia, legal y moderación de Inversora" && git push)
