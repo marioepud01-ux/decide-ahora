@@ -641,7 +641,8 @@ const INV_SUPABASE_KEY='sb_publishable_oY8SaiUn6UWDs-ysKpv8ng__zZ1b1no';
 const invDb=window.supabase.createClient(INV_SUPABASE_URL,INV_SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
 let invUser=null, invProfile=null, invListsCache=[], invCommunityCache=[];
 const invEsc=escapeHtml;
-function currentUser(){return invUser?{id:invUser.id,email:invUser.email,name:invProfile?.display_name||invUser.user_metadata?.display_name||invUser.email?.split('@')[0]||'Miembro'}:null}
+function invDisplayName(){const meta=invUser?.user_metadata||{};return String(invProfile?.display_name||meta.display_name||meta.full_name||meta.name||invUser?.email?.split('@')[0]||'Miembro').trim()||'Miembro'}
+function currentUser(){return invUser?{id:invUser.id,email:invUser.email,name:invDisplayName()}:null}
 function getLists(){return invListsCache}
 function getFavorites(){const base=invListsCache.find(x=>x.name==='Favoritos')||invListsCache[0];return base?.items||[]}
 function isFavorite(name){return getFavorites().includes(name)}
@@ -669,7 +670,7 @@ function focusComment(id){document.getElementById('comment-'+id)?.focus()}
 function copySharedList(id){const p=invCommunityCache.find(x=>x.id===id);if(!p?.listData)return;const body=`Lista «${p.listData.name}»\n${p.listData.items.join('\n')}`;navigator.clipboard?.writeText(body).then(()=>alert('Lista copiada.'))}
 function shareCommunityPost(id){const p=invCommunityCache.find(x=>x.id===id);if(!p)return;const body=`Inversora · ${p.author}\n${p.text}`;if(navigator.share)navigator.share({title:'Conversación en Inversora',text:body}).catch(()=>{});else navigator.clipboard?.writeText(body).then(()=>alert('Publicación copiada.'))}
 async function shareFavoriteListToCommunity(){if(!invUser){showView('account');return}const lists=invListsCache.filter(l=>l.items.length);if(!lists.length)return alert('Primero crea una lista con inversiones.');const choice=lists.length===1?lists[0]:lists.find(l=>l.id===selectedFavoriteList)||lists[0];const body=prompt('Añade una explicación a tu lista:','Comparto esta lista para conocer otros puntos de vista.');if(body===null)return;const {error}=await invDb.from('community_posts').insert({user_id:invUser.id,topic:'Mi cartera',body:body||`Comparto mi lista ${choice.name}`,list_snapshot:{name:choice.name,items:choice.items}});if(error)return alert(error.message);await renderCommunity();showView('community')}
-function refreshAccountNav(){const b=document.getElementById('accountNav');if(!b)return;const signed=!!invUser;b.textContent=signed?'Mi perfil':'Cuenta';b.setAttribute('aria-label',signed?'Mi perfil':'Cuenta');b.title=signed?'Ver tu perfil':'Iniciar sesión o crear una cuenta'}
+function refreshAccountNav(){const b=document.getElementById('accountNav');if(!b)return;const signed=!!invUser,name=signed?invDisplayName():'';b.textContent=signed?name:'Cuenta';b.setAttribute('aria-label',signed?'Perfil de '+name:'Cuenta');b.title=signed?'Ver el perfil de '+name:'Iniciar sesión o crear una cuenta'}
 let invPendingConfirmationEmail='';
 async function renderAccount(){
  const el=document.getElementById('accountContent');if(!el)return;refreshAccountNav();
