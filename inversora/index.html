@@ -699,7 +699,7 @@ const invDb=window.supabase.createClient(INV_SUPABASE_URL,INV_SUPABASE_KEY,{auth
 let invUser=null, invProfile=null, invListsCache=[], invCommunityCache=[];
 const invEsc=escapeHtml;
 function invDisplayName(){const meta=invUser?.user_metadata||{};return String(invProfile?.display_name||meta.display_name||meta.full_name||meta.name||invUser?.email?.split('@')[0]||'Miembro').trim()||'Miembro'}
-function invFirstName(){const saved=String(invProfile?.first_name||invUser?.user_metadata?.first_name||'').trim();if(saved)return saved;return invDisplayName().split(/\\s+/)[0]||'Miembro'}
+function invFirstName(){const saved=String(invProfile?.first_name||invUser?.user_metadata?.first_name||'').trim();if(saved)return saved;return invDisplayName().split(/\s+/)[0]||'Miembro'}
 function currentUser(){return invUser?{id:invUser.id,email:invUser.email,name:invDisplayName()}:null}
 function getLists(){return invListsCache}
 function getFavorites(){const base=invListsCache.find(x=>x.name==='Favoritos')||invListsCache[0];return base?.items||[]}
@@ -737,7 +737,7 @@ async function renderAccount(){
   return;
  }
  if(invUser){
-  const avatar=invProfile?.avatar_url||'',bio=invProfile?.bio||'',name=invEsc(currentUser().name),rawName=String(invProfile?.display_name||invUser?.user_metadata?.display_name||invUser?.user_metadata?.full_name||'' ).trim(),parts=rawName.split(/\\s+/),firstName=invEsc(invProfile?.first_name||invUser?.user_metadata?.first_name||parts[0]||invFirstName()),lastName=invEsc(invProfile?.last_name||invUser?.user_metadata?.last_name||(parts.length>1?parts.slice(1).join(' '):''));
+  const avatar=invProfile?.avatar_url||'',bio=invProfile?.bio||'',name=invEsc(currentUser().name),rawName=String(invProfile?.display_name||invUser?.user_metadata?.display_name||invUser?.user_metadata?.full_name||'' ).trim(),parts=rawName.split(/\s+/),firstName=invEsc(invProfile?.first_name||invUser?.user_metadata?.first_name||parts[0]||invFirstName()),lastName=invEsc(invProfile?.last_name||invUser?.user_metadata?.last_name||(parts.length>1?parts.slice(1).join(' '):''));
   const avatarSrc=avatar?invEsc(avatar):'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 rx=%2250%22 fill=%22%23eef2f7%22/%3E%3Ccircle cx=%2250%22 cy=%2237%22 r=%2218%22 fill=%22%2398a2b3%22/%3E%3Cpath d=%22M15 91c3-21 17-32 35-32s32 11 35 32%22 fill=%22%2398a2b3%22/%3E%3C/svg%3E';
   if(!invProfileEditorOpen){
    el.innerHTML=`<div class="profile-page">
