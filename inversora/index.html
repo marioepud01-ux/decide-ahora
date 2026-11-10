@@ -717,7 +717,7 @@ async function submitAuth(ev){
   const b=document.querySelector('#authForm button[type="submit"]');if(b){b.disabled=false;b.removeAttribute('aria-busy');b.textContent=b.dataset.originalText|| (authMode==='register'?'Crear cuenta':'Iniciar sesión')}
  }
 }
-async function resendConfirmationEmail(){
+async async function resendConfirmationEmail(){
  const btn=document.getElementById('resendConfirmationBtn'),msg=document.getElementById('authMessage');
  if(!invPendingConfirmationEmail)return;
  if(btn){btn.disabled=true;btn.textContent='Enviando…'}
