@@ -693,7 +693,7 @@ invDb.auth.onAuthStateChange((event,session)=>{
     if(authError){
       showView('account');
       const msg=document.getElementById('authMessage');
-      if(msg){msg.className='auth-message';msg.textContent='No se ha podido confirmar el acceso: '+decodeURIComponent(authError.replace(/\\+/g,' '));}
+      if(msg){msg.className='auth-message';msg.textContent='No se ha podido confirmar el acceso: '+decodeURIComponent(authError.split('+').join(' '));}
       return;
     }
     if(params.get('auth')==='confirmed'&&session){
