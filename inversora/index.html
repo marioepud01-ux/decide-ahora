@@ -684,7 +684,29 @@ async function startSocialAuth(provider){const m=document.getElementById('authMe
 // Keep the legacy screen transitions, but load cloud data before presenting account/favorites/community.
 const invOriginalShowView=showView;
 showView=function(id){invOriginalShowView(id);if(id==='favorites'&&invUser)invLoadLists().then(renderFavorites).catch(e=>console.error(e));if(id==='community')renderCommunity()};
-invDb.auth.onAuthStateChange((event,session)=>{invUser=session?.user||null;setTimeout(()=>{invRefresh();if(event==='SIGNED_IN'&&document.getElementById('account')&&!document.getElementById('account').classList.contains('hidden'))renderAccount();},0)});
+invDb.auth.onAuthStateChange((event,session)=>{
+  invUser=session?.user||null;
+  setTimeout(async()=>{
+    await invRefresh();
+    const params=new URLSearchParams(window.location.search);
+    const authError=params.get('error_description')||params.get('error');
+    if(authError){
+      showView('account');
+      const msg=document.getElementById('authMessage');
+      if(msg){msg.className='auth-message';msg.textContent='No se ha podido confirmar el acceso: '+decodeURIComponent(authError.replace(/\\+/g,' '));}
+      return;
+    }
+    if(params.get('auth')==='confirmed'&&session){
+      showView('account');
+      invNotice('Correo confirmado correctamente. Tu cuenta de Inversora ya está activa.');
+      window.history.replaceState({},document.title,window.location.pathname);
+    } else if(event==='PASSWORD_RECOVERY'){
+      showView('account');
+      invNotice('Verifica tu identidad y establece una nueva contraseña desde el enlace recibido.');
+    }
+    if(event==='SIGNED_IN'&&document.getElementById('account')&&!document.getElementById('account').classList.contains('hidden'))renderAccount();
+  },0);
+});
 window.addEventListener('online',()=>invRefresh());
 
 renderHome();renderExplore();populateSimulatorInvestments();applyInvestmentAssumption();simulate();
